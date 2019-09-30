@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { Button, Container, Header } from 'semantic-ui-react';
+import ShippingLabel from '../shipping-label';
 
 class Wizard extends Component {
     constructor(props) {
@@ -23,13 +24,11 @@ class Wizard extends Component {
         return (
             <Container>
                 <Header as='h1'>{header}</Header> 
+                { activeStep === steps.length ?  <ShippingLabel wizardContext={this.props.wizardContext}/> : steps[activeStep]}
+                { activeStep !== 0 && activeStep !== steps.length && <Button onClick={this.onPrevClick}>Prev</Button> }
+                { activeStep !== steps.length-1 && activeStep !== steps.length && <Button onClick={this.onNextClick}>Next</Button>}
                 {
-                    steps[activeStep]
-                }
-                { activeStep !== 0 && <Button onClick={this.onPrevClick}>Prev</Button> }
-                { activeStep !== steps.length-1 && <Button onClick={this.onNextClick}>Next</Button>}
-                {
-                    activeStep === steps.length-1 && <Button>Complete</Button>
+                    activeStep === steps.length-1 && <Button onClick={this.onNextClick}>Confirm</Button>
                 }
             </Container>
         )

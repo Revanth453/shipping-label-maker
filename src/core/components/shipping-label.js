@@ -1,11 +1,11 @@
 import React from 'react';
 import { Container, Header } from 'semantic-ui-react';
 
-const Confirm = (props) => {
+const ShippingLabel = (props) => {
     const { from, to, weight, shippingOption, shippingRate } = props.wizardContext;
     return (
         <Container>
-            <Header as='h2'>Summary</Header>
+            <Header as='h2'>Shipping Label</Header>
             <Header as='h4'>From address:</Header>
                 <label>Name: {from.name}</label>
                 <label>Street: {from.street}</label>
@@ -20,10 +20,9 @@ const Confirm = (props) => {
                 <label>Zip: {to.zip}</label>
             <br />
             <label>Weight: {weight}</label>
-            <label>Shipping Option: {shippingOption}</label>
             <label>Shipping Cost: {weight * shippingRate * (shippingOption === 1 ? 1 : 1.5)}</label>
         </Container>
     )
 }
 
-export default Confirm;
+export default ShippingLabel;
